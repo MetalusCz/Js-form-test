@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <form id="myForm" onsubmit="onsubmit()">
+    <div class="container">
+   
+      <div class="row">
+        <div class="col-md-7">
+          <div class="bg-black bg-opacity-50">
+            <h1 class="text-left">Description</h1>
+            <p class="text-left">
+              This is form with option of fruits and automaticly change price if you change count.
+            </p>
+            <a class="btn btn-light" href="index.html">Back on main page</a>
+          </div>
+        </div>
+            <div class="col-md-5 ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="text-left">Order Form</h3>
+                    </div>                    
+                </div>
+                <hr>
+                <div class="row">
+                    <label class="label col-md-3 control-label">First Name</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="First Name" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="label col-md-3 control-label">Last Name</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="LastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="label col-md-3 control-label">E-mail</label>
+                    <div class="col-md-10">
+                        <input type="Email" class="form-control" id="email" name="Email" placeholder="E-mail" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="label col-md-3 control-label">Gender</label>
+                    <div class="col-md-10">
+                        <input type="radio" name="gender" value="male"> <small>Male</small>
+                        <input type="radio" name="gender" value="male"> <small>Female</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="label col-md-3 control-label">Country</label>
+                    <div class="col-md-10">
+                       <select name="country" id="country" class="form-control">
+                        <option value="CZE">Czechia</option>
+                        <option value="GBR">Britain</option>
+                        <option value="USA">America</option>
+                        <option value="ESP">Spain</option>
+                        <option value="FIN">Finland</option>
+                        <option value="SWE">Swedish</option>
+                       </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="label col-md-3 control-label">Commodity</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select name="products-try" id="products-try" onchange="updatePrice()" class="form-control">
+                                <option value="0">Select fruit</option>
+                                <option value="1" >Melon</option>
+                                <option value="2" >Strawberry</option>
+                                <option value="3" >Mango</option>
+                                <option value="4" >Apple</option>
+                                <option value="5" >Pineapple</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">   
+                            <input type="number" id="quantity" class="form-control" name="count" placeholder="Count" onchange="updateCountPrice()" required>
+                        </div>
+                        <div class="col-md-3">   
+                            <button type="button" onclick="addProduct()" class="btn btn-primary visually-hidden">Add</button>
+                        </div>
+                    </div>
+                    <div class="col-md-10">                                            
+                        <label id="priceLabel" class="form-control">Price of item</label>
+                        <label id="product-price" for=""  class="form-control">Total Price</label>  
+                        <h3 class="form-control">Products</h3>
+                        <div id="products" class="products"></div>                      
+                    </div>
+                    
+                </div>
+                <button type="submit" id="submitBtn" class="btn btn-info" onclick=" showRecap()" disabled>Submit</button>
+                <a href="#" target="_blank" class="btn btn-warning">Cancel</a>
+            </div>
+      </div>
+    
+    </div>
+  </form>
+  
+<script>
+    const price = document.getElementById("priceLabel");
+    function updatePrice() {
+      const select = document.getElementById("products-try");
+      const selectedValue = select.value;
+  
+      if (selectedValue === "0") {
+        price.textContent = "";
+      } else {
+        price.textContent = selectedValue + " CZK";
+      }
+    }
+    
+    const quantityInput = document.getElementById('quantity');
+    const productPrices = {
+    0: 0, // Default value for the "Select fruit" option
+    1: 22, // Melon price per item
+    2: 35, // Strawberry price per item
+    3: 41, // Mango price per item
+    4: 11, // Apple price per item
+    5: 53, // Pineapple price per item
+    };
+    quantityInput.addEventListener('input', updateCountPrice);
+    document.getElementById('products-try').addEventListener('change', updateCountPrice);
+    function updateCountPrice() {
+    const selectedProduct = parseInt(document.getElementById('products-try').value);
+    const pricePerItem = productPrices[selectedProduct];
+    const quantity = parseInt(quantityInput.value);
+    const newPrice = pricePerItem * quantity;
+    price.textContent = newPrice.toFixed(2); 
+    }
+  </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>

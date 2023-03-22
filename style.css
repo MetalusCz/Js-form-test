@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    background-image: url(https://images.unsplash.com/photo-1625490939776-17cef70ec079?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+h1{
+    font-size: 40px;
+    color: azure;
+    margin-top: 250px;
+}
+p{
+    font: 18px;
+    color: #fff;
+}
+h3{
+    font-size: 25px;
+    color: #fff;
+}
+.col-md-5{
+    margin-top: 80px;
+    box-shadow: -1px 1px 60px 10px rgb(5, 5, 5);
+    background: rgba(0, 0, 0, 0.95);
+}
+.label{
+    font-weight: normal;
+    margin-top: 15px;
+    color: aqua;
+    font-size: 18px;
+}
+.form-control{
+    background: transparent;
+    border-radius: 0px;
+    border: 0px;
+    border-bottom: 1px solid #fff;
+    font-size: 18px;
+    margin-top: 14px;
+    height: 40px;
+    color: #fff;
+}
+small{
+    font-size: 18px;
+    color: #fff;
+}
+input[type="radio"]{
+    margin-top: 22px;
+}
+option{
+    color: rgb(37, 37, 37);
+}
+.btn-info{
+    margin-top: 20px;
+    font-size: 18px;
+    width: 120px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
+.btn-warning{
+    margin-top: 20px;
+    font-size: 18px;
+    width: 120px;
+    margin-bottom: 20px;
+}
+.products{
+    color: beige;
+}
